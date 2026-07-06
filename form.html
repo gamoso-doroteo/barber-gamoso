@@ -1,0 +1,23 @@
+npm init -y<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Contacto</title>
+</head>
+<body>
+    <h1>Formulario de Contacto</h1>
+
+    <form action="http://localhost:3000/guardar" method="POST">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required><br><br>
+
+        <label>Correo:</label>
+        <input type="email" name="correo" required><br><br>
+
+        <label>Mensaje:</label>
+        <textarea name="mensaje" required></textarea><br><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Barber Shop - GAMOSO</title>
+
+<link href="fondo-barber.png" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#111;
+color:white;
+overflow-x:hidden;
+}
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:1000;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(8px);
+border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+}
+
+.logo{
+font-size:32px;
+font-weight:700;
+letter-spacing:2px;
+}
+
+.logo span{
+color:#b22222;
+}
+
+.menu{
+display:flex;
+list-style:none;
+gap:40px;
+}
+
+.menu a{
+text-decoration:none;
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+}
+
+.menu a:hover{
+color:#c0392b;
+}
+
+.hero{
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url('fondo-barber.png');
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+display:flex;
+align-items:center;
+padding:0 10%;
+}
+
+.hero-content{
+max-width:700px;
+}
+
+.hero h1{
+font-family:'Great Vibes',cursive;
+font-size:110px;
+line-height:1;
+}
+
+.hero p{
+font-size:30px;
+letter-spacing:2px;
+margin:20px 0;
+}
+
+.btn{
+display:inline-block;
+padding:18px 40px;
+background:#9e1b1b;
+color:white;
+border:none;
+border-radius:10px;
+font-size:22px;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:hover{
+background:#c62828;
+transform:scale(1.05);
+}
+
+footer{
+background:black;
+text-align:center;
+padding:20px;
+}
+
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.85);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:2000;
+}
+
+.modal-content{
+background:#1b1b1b;
+width:90%;
+max-width:900px;
+border-radius:20px;
+padding:30px;
+position:relative;
+animation:zoom .4s ease;
+max-height:90vh;
+overflow:auto;
+}
+
+@keyframes zoom{
+from{
+transform:scale(.7);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+.close{
+position:absolute;
+top:15px;
+right:20px;
+font-size:35px;
+cursor:pointer;
+}
+
+.titulo{
+text-align:center;
+margin-bottom:30px;
+color:#c0392b;
+font-size:38px;
+}
+
+.servicios{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:#2a2a2a;
+padding:25px;
+border-radius:15px;
+text-align:center;
+}
+
+.card h3{
+margin-bottom:10px;
+color:#d63031;
+}
+
+.carousel{
+text-align:center;
+}
+
+.carousel img{
+width:100%;
+height:500px;
+object-fit:cover;
+border-radius:15px;
+}
+
+.nombre-corte{
+margin-top:15px;
+font-size:30px;
+font-weight:bold;
+color:#d63031;
+}
+
+.contact-info{
+font-size:20px;
+line-height:2;
+text-align:center;
+}
+
+.red{
+margin-top:20px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.red a{
+text-decoration:none;
+padding:10px 20px;
+background:#c0392b;
+border-radius:10px;
+color:white;
+}
+
+.nosotros{
+padding:80px 10%;
+background:#181818;
+text-align:center;
+}
+
+.nosotros h2{
+font-size:45px;
+margin-bottom:40px;
+color:#c0392b;
+}
+
+.contenedor-nosotros{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.caja{
+background:#222;
+padding:30px;
+border-radius:15px;
+box-shadow:0 0 15px rgba(0,0,0,.4);
+transition:.3s;
+}
+
+.caja:hover{
+transform:translateY(-10px);
+}
+
+.caja h3{
+font-size:28px;
+margin-bottom:15px;
+color:#d63031;
+}
+
+.caja p{
+font-size:17px;
+line-height:1.8;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:65px;
+}
+
+.hero p{
+font-size:20px;
+}
+
+.menu{
+gap:15px;
+}
+
+.menu a{
+font-size:15px;
+}
+
+.carousel img{
+height:280px;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:5px;
+font-size:32px;
+font-weight:700;
+letter-spacing:2px;
+}
+
+.logo-img{
+width:5px;
+height:5px;
+object-fit:contain;
+border-radius:50%;
+}
+
+#contactForm{
+display:flex;
+flex-direction:column;
+gap:15px;
+max-width:600px;
+margin:auto;
+}
+
+#contactForm input,
+#contactForm textarea{
+padding:15px;
+border:none;
+border-radius:10px;
+font-size:16px;
+outline:none;
+}
+
+#contactForm textarea{
+height:120px;
+resize:none;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+th, td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#111;
+    color:white;
+}
+
+td img{
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+td img:hover{
+    transform:scale(1.1);
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<nav class="navbar">
+
+<div class="logo">
+    <img src="logo barber Gamoso.jpg" alt="Logo Barbería" class="logo-img">
+    <span>BARBER SHOP</span> GAMOSO
+</div>
+
+<ul class="menu">
+<li><a onclick="cerrarTodo()">Inicio</a></li>
+<li><a onclick="abrirModal('serviciosModal')">Servicios</a></li>
+<li><a onclick="abrirModal('galeriaModal')">Galería</a></li>
+</ul>
+
+</nav>
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+<h1>Estilo & Precisión</h1>
+<p>LOS MEJORES CORTES Y ARREGLOS DE BARBA PARA HOMBRES</p>
+
+<button class="btn"
+onclick="abrirModal('galeriaModal')">
+Ver Estilos de Corte
+</button>
+
+</div>
+
+</section>
+
+<section class="nosotros">
+
+<h2>Sobre Barber Shop Gamoso</h2>
+
+<div class="contenedor-nosotros">
+
+<div class="caja">
+<h3>¿Quiénes Somos?</h3>
+<p>
+Somos Barber Shop Gamoso, una barbería dedicada a ofrecer cortes modernos,
+perfilado de barba y atención personalizada para cada cliente.
+Nuestro objetivo es que cada persona salga con una imagen renovada y mayor confianza.
+</p>
+</div>
+
+<div class="caja">
+<h3>Misión</h3>
+<p>
+Brindar servicios de barbería de alta calidad mediante técnicas modernas,
+herramientas profesionales y una atención excepcional que supere las expectativas de nuestros clientes.
+</p>
+</div>
+
+<div class="caja">
+<h3>Visión</h3>
+<p>
+Ser la barbería líder de la comunidad, reconocida por la calidad de nuestros servicios,
+la innovación constante y la satisfacción de cada cliente.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Contacto</title>
+</head>
+<body>
+    <h1>Formulario de Contacto</h1>
+
+    <form action="http://localhost:3000/guardar" method="POST">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required><br><br>
+
+        <label>Correo:</label>
+        <input type="email" name="correo" required><br><br>
+
+        <label>Mensaje:</label>
+        <textarea name="mensaje" required></textarea><br><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
+</footer>
+
+<div class="red">
+
+<a href="https://www.facebook.com/share/1HqycJp9ud/"
+target="_blank" class="social facebook">
+<i class="fab fa-facebook-f"></i> Facebook
+</a>
+
+<a href="https://www.instagram.com/"
+target="_blank" class="social instagram">
+<i class="fab fa-instagram"></i> Instagram
+</a>
+
+<a href="https://wa.me/525554302611"
+target="_blank" class="social whatsapp">
+<i class="fab fa-whatsapp"></i> WhatsApp
+</a>
+
+</div>
+
+<!-- SERVICIOS -->
+<div class="modal" id="serviciosModal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="cerrarModal('serviciosModal')">
+            ×
+        </span>
+
+        <h2 class="titulo">Nuestros Servicios son:</h2>
+
+        <table>
+            <tr>
+                <th>Servicio</th>
+                <th>Precio</th>
+                <th>Imagen</th>
+            </tr>
+
+            <tr>
+                <td>Fade Moderno</td>
+                <td>$120</td>
+                <td>
+                    <a href="fade moderno.jpg" target="_blank">
+                        <img src="fade moderno.jpg" alt="Fade Moderno">
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Taper Fade</td>
+                <td>$130</td>
+                <td>
+                    <a href="taper fade.jpg" target="_blank">
+                        <img src="taper fade.jpg" alt="Taper Fade">
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Skin Fade</td>
+                <td>$100</td>
+                <td>
+                    <a href="skin fade.jpg" target="_blank">
+                        <img src="skin fade.jpg" alt="Skin Fade">
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Perfilado de Barba</td>
+                <td>$200</td>
+                <td>
+                    <a href="perfilado de barba.jpg" target="_blank">
+                        <img src="perfilado de barba.jpg" alt="Perfilado de Barba">
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Corte + Barba</td>
+                <td>$200</td>
+                <td>
+                    <a href="corte de barba.jpg" target="_blank">
+                        <img src="corte de barba.jpg" alt="Corte + Barba">
+                    </a>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+
+  <!-- 🔹 Sección de ubicación con mapa -->
+   <footer>
+<div class="mapa">
+    <h2>La Comunidad 3ra Manzana, Jilotepec, Estado de Mexico</h2>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!3m2!1ses-419!2smx!4v1781831105420!5m2!1ses-419!2smx!6m8!1m7!1sP1rK_7bTtLNou0nipiumDA!2m2!1d20.00931177085084!2d-99.58860437801702!3f180!4f0!5f0.7820865974627469"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</section>
+</footer>
+
+<footer>
+© 2025 Barber Shop | Todos los derechos reservados
+<p>📍 Dirección: Av. Principal La comunidad 3ra Manzana, Centro</p>
+<p>📞 Teléfono: +52 55 54 30 26 11</p>
+<p>📧 contacto@barbershop.com</p>
+<p>🕒 Lunes a Sábado 9:00 AM - 8:00 PM</p>
+<p>Domingo Cerrado</p>
+</footer>
+  
+<!-- GALERIA -->
+
+<div class="modal" id="galeriaModal">
+
+<div class="modal-content">
+
+<span class="close"
+onclick="cerrarModal('galeriaModal')">
+×
+</span>
+
+<h2 class="titulo">Nuestros servicios</h2>
+
+<div class="carousel">
+
+<img id="slide">
+
+<div class="nombre-corte"
+id="nombreCorte">
+Fade Moderno
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function abrirModal(id){
+document.getElementById(id).style.display='flex';
+}
+
+function cerrarModal(id){
+document.getElementById(id).style.display='none';
+}
+
+function cerrarTodo(){
+document.querySelectorAll('.modal')
+.forEach(m=>m.style.display='none');
+}
+
+window.onclick=function(e){
+
+document.querySelectorAll('.modal')
+.forEach(modal=>{
+
+if(e.target===modal){
+modal.style.display='none';
+}
+
+});
+
+}
+
+const cortes=[
+
+{
+nombre:"Fade Moderno",
+imagen:"fade moderno.jpg"
+},
+
+{
+nombre:"perfilado de barba",
+imagen:"perfilado de barba.jpg"
+},
+
+{
+nombre:"corte de barba",
+imagen:"corte de barba.jpg"
+},
+
+{
+nombre:"Skin Fade",
+imagen:"skin fade.jpg"
+},
+
+{
+nombre:"Taper Fade",
+imagen:"taper fade.jpg"
+}
+
+];
+
+let indice=0;
+
+const slide=document.getElementById('slide');
+const nombre=document.getElementById('nombreCorte');
+
+function cambiarCorte(){
+
+slide.src=cortes[indice].imagen;
+nombre.innerText=cortes[indice].nombre;
+
+indice++;
+
+if(indice>=cortes.length){
+indice=0;
+}
+
+}
+
+cambiarCorte();
+
+setInterval(cambiarCorte,1500);
+
+document.getElementById("contactForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+alert("Datos guardados correctamente");
+
+this.reset();
+
+});
+
+</script>
+
+</body>
+</html>
